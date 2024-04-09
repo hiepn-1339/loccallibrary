@@ -21,3 +21,10 @@ export const index = async () => {
     genreRepository.count(),
   ]);
 };
+
+export const bookList = async () => {
+  return await bookRepository.find({
+    order: { title: 'ASC' },
+    relations: ['author'],
+  });
+};
