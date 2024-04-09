@@ -7,3 +7,8 @@
 .boder-1 {
   border: 1px solid #ccc;
 }
+
+.genre {
+  display: inline-block; 
+  margin-right: 10px;
+}

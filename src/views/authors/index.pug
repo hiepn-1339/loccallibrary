@@ -6,7 +6,12 @@ block content
     ul
       each author in authors
         li
-          a(href=author.name) #{author.name} 
+          a(href='author/' + author.url) #{author.name} 
           |(#{author.dateOfBirth} - #{author.dateOfDeath})
   else
   p #{t('home.noAuthor')}
+
+
+  hr
+  p
+    a(href='author/create') #{t('home.createAuthor')}

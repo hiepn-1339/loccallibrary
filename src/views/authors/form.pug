@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  h1 #{title}
+  form(method='POST' action=`${action}`)
+    div.form-group
+      label(for='firstName') #{t('home.firstName'}:
+      input.form-control(type='text' placeholder='First Name'
+        name='firstName' required value=( author === underfined ? '' : author.firstName))
+      
+      label(for='familyName') #{t('home.familyName'}:
+      input.form-control(type='text' placeholder='Family Name'
+        name='familyName' required value=( author === underfined ? '' : author.familyName))
+      
+      label(for='dateOfBirth') #{t('home.dateOfBirth'}:
+      input.form-control(type='date'
+        name='dateOfBirth' value=( author === underfined ? '' : author.dateOfBirth))
+      
+      label(for='dateOfDeath') #{t('home.dateOfDeath'}:
+      input.form-control(type='date'
+        name='dateOfDeath' value=( author === underfined ? '' : author.dateOfDeath))
+
+    button.btn.btn-primary(type='submit') #{t('home.submit'}
+    
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

@@ -12,3 +12,9 @@ block content
       p #{book.summary}
     else 
       p #{t('home.noBooks')}
+    
+  hr
+  p
+    a(href=`/author/${author.id}/update`) #{t('home.updateAuthor')}
+  p
+    a(href=`/author/${author.id}/delete`) #{t('home.deleteAuthor')}

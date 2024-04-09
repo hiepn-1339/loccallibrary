@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1 #{title}: #{book.title}
+  if bookInstances.length
+    p #[strong #{t('home.deleteTheFollowingBookInstanceBeforeAttemptingToDeleteThisBook')}]
+    div.mx-5
+      h4 #{t('home.bookinstance')}
+      dl
+        each bookInstance in bookInstances
+          dt
+            a(href=`/bookInstance/${bookInstance.id}`) #{bookInstance.imprint}
+          if bookInstance.status === 'Available'
+            dd.text-success #{bookInstance.status} 
+          else if bookInstance.status === 'Maintenance'
+            dd.text-danger #{bookInstance.status} 
+          else
+            dd.text-warning #{bookInstance.status} 
+  else
+    p #{t('home.doYouReallyWantToDeleteThisBook')}
+    form(method='POST' action=`/book/${book.id}/delete`)
+      input(type='hidden' name='_method' value='DELETE')
+      button.btn.btn-primary(type='submit') Delete

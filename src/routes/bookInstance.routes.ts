@@ -6,8 +6,12 @@ const router: Router = Router();
 
 router.get('/', bookInstanceController.bookInstanceList);
 router.get('/:id', checkValidId, bookInstanceController.bookInstanceDetail);
-router.post('/', bookInstanceController.bookInstanceCreate);
-router.put('/:id', bookInstanceController.bookInstanceUpdate);
-router.delete('/:id', bookInstanceController.bookInstanceDelete);
+router.get('/create', bookInstanceController.bookInstanceCreateGet);
+router.post('/create', bookInstanceController.bookInstanceCreatePost);
+router.get('/:id/update', bookInstanceController.bookInstanceUpdateGet);
+router.post('/:id/update', bookInstanceController.bookInstanceUpdatePost);
+router.get('/:id/delete', bookInstanceController.bookInstanceDeleteGet);
+router.post('/:id/delete', bookInstanceController.bookInstanceDeletePost);
+router.get('/:id', bookInstanceController.bookInstanceDetail);
 
 export default router;

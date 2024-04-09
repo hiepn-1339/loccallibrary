@@ -14,3 +14,9 @@ block content
       span.text-warning #{bookInstance.status} 
   if bookInstance.status !== 'Available'
     p #[strong #{t('home.dueBack')}: ] #{bookInstance.dueBack}
+
+  hr
+  p
+    a(href=`/bookInstance/${bookInstance.id}/update`) #{t('home.updateBookInstance')}
+  p
+    a(href=`/bookInstance/${bookInstance.id}/delete`) #{t('home.deleteBookInstance')}
