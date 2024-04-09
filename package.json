@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
     "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/app.ts",
+    "migration:generate": "ts-node --esm ./node_modules/typeorm/cli.js migration:generate -d ./src/data-source.ts ./src/migrations/create_table",
+    "migration:run": "ts-node --esm ./node_modules/typeorm/cli.js migration:run -d /src/data-source.ts",
+    "migration:revert": "ts-node --esm ./node_modules/typeorm/cli.js migration:revert -d /src/data-source.ts"
   },
   "author": "",
   "license": "ISC",
