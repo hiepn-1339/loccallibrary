@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h1 #{t('home.author')}: #{author.name}
+
+  p #{author.dateOfBirth} - #{author.dateOfDeath}
+  .ml-3.mt-3
+    h4.mb-3 #{t('home.book')}
+    each book in books 
+     div 
+      a(href=book.url) #[strong #{book.title}]
+      p #{book.summary}
+    else 
+      p #{t('home.noBooks')}

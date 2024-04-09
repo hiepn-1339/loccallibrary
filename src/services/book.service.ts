@@ -28,3 +28,10 @@ export const bookList = async () => {
     relations: ['author'],
   });
 };
+
+export const bookDetail = async (id: number) => {
+  return await bookRepository.findOne({
+    relations: ['author', 'genres', 'bookInstances'],
+    where: { id: id },
+  });
+};

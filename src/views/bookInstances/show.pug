@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1 #{t('home.id')}: #{bookInstance.id}
+  p #[strong #{t('home.title')}: ] 
+    a(href=book.url) #{book.title}
+  p #[strong #{t('home.imprint')}: ] #{bookInstance.imprint}
+  p #[strong #{t('home.status')}: ] 
+    if bookInstance.status === 'Available'
+      span.text-success #{bookInstance.status} 
+    else if bookInstance.status === 'Maintenance'
+      span.text-danger #{bookInstance.status} 
+    else
+      span.text-warning #{bookInstance.status} 
+  if bookInstance.status !== 'Available'
+    p #[strong #{t('home.dueBack')}: ] #{bookInstance.dueBack}

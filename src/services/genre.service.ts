@@ -8,3 +8,10 @@ export const genreList = async () => {
     order: { name: 'ASC' },
   });
 };
+
+export const genreDetail = async (id: number) => {
+  return await genreRepository.findOne({
+    relations: ['books'],
+    where: { id: id },
+  });
+};

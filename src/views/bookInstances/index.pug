@@ -9,11 +9,11 @@ block content
           a(href=bookInstance.book.url)= bookInstance.book.title
           | : #{bookInstance.imprint} - 
           if bookInstance.status === 'Available'
-            span(class='text-green') #{bookInstance.status} 
-          if bookInstance.status === 'Loaned'
-            span(class='text-yellow') #{bookInstance.status} 
-          if bookInstance.status === 'Maintenance'
-            span(class='text-red') #{bookInstance.status} 
+            span.text-success #{bookInstance.status} 
+          else if bookInstance.status === 'Maintenance'
+            span.text-danger #{bookInstance.status} 
+          else
+            span.text-warning #{bookInstance.status} 
           |(#{bookInstance.dueBack})
   else
-    p There are no bookInstances.
+    p #{t('home.noCopies')}

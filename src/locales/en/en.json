@@ -19,6 +19,22 @@
     "createNewBook": "Create New Book",
     "createNewBookInstance": "Create New Book Instance",
     "english": "English",
-    "vietnamese": "Vietnamese"
+    "vietnamese": "Vietnamese",
+    "noBooks": "There are no book.",
+    "title": "Title",
+    "summary": "Summary",
+    "status": "Status",
+    "isbn": "ISBN",
+    "noGenres": "There are no genres.",
+    "copies": "Copies",
+    "imprint": "Imprint",
+    "dueBack": "Due Back",
+    "id": "Id",
+    "noCopies": "There are no copies.",
+    "noAuthors": "There are no authors."
+  },
+  "error": {
+    "invalidId": "Invalid Id",
+    "notFound": "Not Found"
   }
 }
