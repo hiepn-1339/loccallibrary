@@ -1,0 +1,20 @@
+{
+  "home": {
+    "sunAsterisk": "Sun Asterisk en",
+    "home": "Local Library",
+    "welcome": "Welcome to Sun Asterisk",
+    "content": "Content",
+    "record_infor": "Our library status",
+    "book": "Book",
+    "bookinstance": "Book Instance",
+    "available_bookinstance": "All available book instances",
+    "author": "Author",
+    "genre": "Genre",
+    "createNewAuthor": "Create New Author",
+    "createNewGenre": "Create New Genre",
+    "createNewBook": "Create New Book",
+    "createNewBookInstance": "Create New Book Instance",
+    "english": "English",
+    "vietnamese": "Vietnamese"
+  }
+}

@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport' , content='width=device-width, initial-scale=1' )
+    link(rel="stylesheet" , href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css ",
+    crossorigin ="anonymous" )
+    script(src="/js/jquery-3.5.1.slim.min.js" , crossorigin ="anonymous" )
+    script(src="/js/bootstrap.min.js" , crossorigin ="anonymous" )
+    link(rel='stylesheet' , href='/stylesheets/style.css' )
+  body
+    div(class='container-fluid' )
+      div(class='row')
+        div(class='col-sm-2' )
+          block sidebar
+            ul(class='sidebar-nav' )
+              li
+                a(href='/' ) #{t('home.home')}
+              li
+                a(href='/book' ) #{t('home.book')}
+              li
+                a(href='/author' ) #{t('home.author')}
+              li
+                a(href='/genre' ) #{t('home.genre')}
+              li
+                a(href='/bookInstance' ) #{t('home.bookinstance')}
+              li(class="boder-1") 
+
+              li
+                a(href='/author/create' ) #{t('home.createNewAuthor')}
+              li
+                a(href='/genre/create' ) #{t('home.createNewGenre')}
+              li
+                a(href='/book/create' ) #{t('home.createNewBook')}
+              li
+                a(href='/bookInstance/create' ) #{t('home.createNewBookInstance')}
+              li(class="boder-1") 
+              
+              li 
+                a(href='?lng=vi') #{t('home.vietnamese')} | 
+                a(href='?lng=en') #{t('home.english')}
+        div(class='col-sm-10' )
+          block content
