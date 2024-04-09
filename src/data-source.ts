@@ -1,9 +1,9 @@
-import "reflect-metadata";
-import { DataSource } from "typeorm";
-import config from "./config";
+import 'reflect-metadata';
+import { DataSource } from 'typeorm';
+import config from './config';
 
 export const AppDataSource = new DataSource({
-  type: "mysql",
+  type: 'mysql',
   host: config.dbHost,
   port: config.dbPort,
   username: config.dbUser,
@@ -13,4 +13,4 @@ export const AppDataSource = new DataSource({
   logging: true,
   entities: ['src/entities/**/*.ts'],
   migrations: ['src/migrations/**/*.ts'],
-})
+});

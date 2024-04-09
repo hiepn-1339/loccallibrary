@@ -26,6 +26,6 @@ const config: {
   smtpPort: Number(process.env.SMTP_PORT) || 0,
   smtpUsername: process.env.SMTP_USERNAME || '',
   smtpPassword: process.env.SMTP_PASSWORD || '',
-}
+};
 
 export default config;
