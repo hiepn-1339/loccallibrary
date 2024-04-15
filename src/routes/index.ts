@@ -1,8 +1,18 @@
-import { Router, NextFunction, Request, Response } from 'express'
-const router: Router = Router()
+import { Router, Request, Response } from 'express';
+import bookRouter from './book.routes';
+import authorRouter from './author.routes';
+import genreRouter from './genre.routes';
+import bookInstanceRouter from './bookInstance.routes';
 
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
+const router: Router = Router();
+
+router.get('/', (req: Request, res: Response) => {
   res.render('index', { title: 'Express' });
-})
+});
 
-export default router
+router.use('/book', bookRouter);
+router.use('/author', authorRouter);
+router.use('/genre', genreRouter);
+router.use('/bookInstance', bookInstanceRouter);
+
+export default router;

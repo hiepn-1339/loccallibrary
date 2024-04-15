@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm"
-import { Author } from "./author.entity"
-import { Genre } from "./genre.entity";
-import { BookInstance } from "./bookInstance.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from 'typeorm';
+import { Author } from './author.entity';
+import { Genre } from './genre.entity';
+import { BookInstance } from './bookInstance.entity';
 
 @Entity()
 export class Book {
@@ -9,26 +9,26 @@ export class Book {
   id: number | undefined;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     nullable: false,
   })
   title: string | undefined;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     nullable: false,
   })
   summary: string | undefined;
 
   @Column({
-    type: "varchar",
-    nullable: true
+    type: 'varchar',
+    nullable: true,
   })
   isbn: string | undefined;
 
 
   @ManyToOne(() => Author, (author) => author.books)
-  @JoinColumn({ name: "author_id" })
+  @JoinColumn({ name: 'author_id' })
   author: Author | undefined;
 
   @ManyToMany(() => Genre, (genre) => genre.books)

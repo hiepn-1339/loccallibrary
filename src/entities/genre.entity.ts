@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm"
-import { Book } from "./book.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Book } from './book.entity';
 
 @Entity()
 export class Genre {
@@ -7,7 +7,7 @@ export class Genre {
   id: number | undefined;
 
   @Column({
-    type: "varchar",
+    type: 'varchar',
     nullable: false,
   })
   name: string | undefined;
