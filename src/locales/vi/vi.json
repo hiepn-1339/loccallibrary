@@ -1,6 +1,10 @@
 {
   "home": {
     "sunAsterisk": "Sun Asterisk vi",
+    "authorList": "Danh sách tác giả",
+    "bookList": "Danh sách sách",
+    "bookInstanceList": "Danh sách bản sao sách",
+    "genreList": "Danh sách thể loại",
     "home": "Thư viện địa phương",
     "welcome": "Chào mừng bạn đến với Sun Asterisk",
     "content": "Nội dung",

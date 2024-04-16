@@ -1,8 +1,12 @@
 import { Request, Response } from 'express';
+import asyncHandler from 'express-async-handler';
+import * as genreService from '../services/genre.service';
+import { t } from 'i18next';
 
-export const genreList = (req: Request, res: Response) => {
-  res.send('NOT IMPLEMENTED: Genre list');
-};
+export const genreList = asyncHandler(async (req: Request, res: Response) => {
+  const genres = await genreService.genreList();
+  res.render('genres/index', { genres, title: t('home.genreList') });
+});
 
 export const genreDetail = (req: Request, res: Response) => {
   res.send(`NOT IMPLEMENTED: Genre detail: ${req.params.id}`);

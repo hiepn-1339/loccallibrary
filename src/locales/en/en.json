@@ -1,6 +1,10 @@
 {
   "home": {
     "sunAsterisk": "Sun Asterisk en",
+    "authorList": "Author List",
+    "bookList": "Book List",
+    "bookInstanceList": "BookInstance List",
+    "genreList": "Genre List",
     "home": "Local Library",
     "welcome": "Welcome to Sun Asterisk",
     "content": "Content",

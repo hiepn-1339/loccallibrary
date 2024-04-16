@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1= title
+  if authors.length
+    ul
+      each author in authors
+        li
+          a(href=author.name) #{author.name} 
+          |(#{author.dateOfBirth} - #{author.dateOfDeath})
+  else
+  p There are no authors.
