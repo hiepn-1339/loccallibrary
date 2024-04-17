@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  h1 #{t('home.title')} #{book.title}
+
+  p #[strong #{t('home.author')}: ]
+    a(href=book.author.url) #{book.author.name}
+  p #[strong #{t('home.summary')}: ] #{book.summary}
+  p #[strong #{t('home.isbn')}: ] #{book.isbn}
+  p #[strong #{t('home.genre')}: ]
+    each val, index in bookGenres
+      a(href=val.url) #{val.name}
+      if index < bookGenres.length - 1
+        |,
+    else
+      p #{t('home.noGenre')}
+      div.mx-5
+        h4 #{t('home.copies')}
+
+  each val in bookInstances
+    hr
+
+    if val.status=='Available'
+      p.text-success #{val.status}
+    else if val.status=='Maintenance'
+      p.text-danger #{val.status}
+    else
+      p.text-warning #{val.status}
+    p #[strong #{t('home.imprint')}:] #{val.imprint}
+    if val.status!='Available'
+      p #[strong #{t('home.dueBack')}:] #{val.dueBack}
+    p #[strong #{t('home.id')}: ]
+      a(href=val.url) #{val.id}
+  else
+    p #{t('home.noCopies')}

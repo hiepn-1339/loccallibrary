@@ -19,6 +19,22 @@
     "createNewBook": "Tạo mới sách",
     "createNewBookInstance": "Tạo mới bản sao sách",
     "english": "Tiếng anh",
-    "vietnamese": "Tiếng việt"
+    "vietnamese": "Tiếng việt",
+    "noBooks": "Không có sách nào.",
+    "title": "Tiêu đề",
+    "summary": "Tóm tắt",
+    "status": "Tình trạng",
+    "isbn": "ISBN",
+    "noGenres": "Không có thể loại nào.",
+    "copies": "Bản sao",
+    "imprint": "In ấn",
+    "dueBack": "Hạn trả",
+    "id": "Id",
+    "noCopies": "Không có bản sao nào.",
+    "noAuthors": "Không có tác giả nào."
+  },
+  "error": {
+    "invalidId": "Id không hợp lệ",
+    "notFound": "Không tìm thấy"
   }
 }

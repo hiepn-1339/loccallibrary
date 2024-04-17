@@ -13,3 +13,10 @@ export const bookInstanceList = async () => {
     },
   });
 };
+
+export const bookInstanceDetail = async (id: number) => {
+  return await bookInstanceRepository.findOne({
+    relations: ['book'],
+    where: { id: id },
+  });
+};
