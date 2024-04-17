@@ -3,6 +3,9 @@ import asyncHandler from 'express-async-handler';
 import * as bookInstanceService from '../services/bookInstance.service';
 import { t } from 'i18next';
 import { BookInstance } from '../entities/bookInstance.entity';
+import { ActionForm, BookInstanceStatus } from '../constant';
+import { checkValidId } from '../middlewares';
+import { Result, body, validationResult } from 'express-validator';
 
 interface IBookInstanceRequest extends Request {
   bookInstance?: BookInstance;
@@ -30,14 +33,69 @@ export const bookInstanceDetail = [checkExistsBookInstance, (req: IBookInstanceR
   });
 }];
 
-export const bookInstanceCreate = (req: Request, res: Response) => {
-  res.send('NOT IMPLEMENTED: BookInstance create');
-};
+export const bookInstanceCreateGet = asyncHandler(async (req: Request, res: Response) => {
+  const books = await bookInstanceService.bookInstanceCreateGet();
+  res.render('bookInstances/form', { title: t('home.createBook'), action: ActionForm.Create, books, statuses: BookInstanceStatus });
+});
 
-export const bookInstanceUpdate = (req: Request, res: Response) => {
-  res.send(`NOT IMPLEMENTED: BookInstance update: ${req.params.id}`);
-};
+export const bookInstanceCreatePost = [
+  body('imprint', t('error.imprintMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  body('status', t('error.statusMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  body('book', t('error.bookMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  asyncHandler(async (req: IBookInstanceRequest, res: Response) => {
+    const errors: Result = validationResult(req);
+    if (!errors.isEmpty()) {
+      const books = await bookInstanceService.bookInstanceCreateGet();
+      res.render('bookInstances/form', {
+        title: t('home.createBook'),
+        action: ActionForm.Create,
+        books,
+        statuses: BookInstanceStatus,
+        bookInstance: req.body,
+        errors: errors.array(),
+      });
+    }
 
-export const bookInstanceDelete = (req: Request, res: Response) => {
-  res.send(`NOT IMPLEMENTED: BookInstance delete: ${req.params.id}`);
-};
+    const newBookInstance = bookInstanceService.bookInstanceCreatePost(req.body);
+    res.redirect(`/bookInstance/${newBookInstance.id}`);
+  }),
+];
+
+export const bookInstanceUpdateGet = [checkValidId, checkExistsBookInstance, asyncHandler(async (req: IBookInstanceRequest, res: Response) => {
+  const books = await bookInstanceService.bookInstanceCreateGet();
+  res.render('bookInstances/form', { title: t('home.updateBook'), action: ActionForm.Update, books, bookInstance: req.bookInstance, statuses: BookInstanceStatus });
+})];
+
+export const bookInstanceUpdatePost = [
+  checkValidId, 
+  body('imprint', t('error.imprintMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  body('status', t('error.statusMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  body('book', t('error.bookMustNotBeEmpty')).trim().isLength({ min: 1 }).escape(),
+  checkExistsBookInstance, 
+  asyncHandler(async (req: IBookInstanceRequest, res: Response) => {
+    const errors: Result = validationResult(req);
+    if (!errors.isEmpty()) {
+      const books = await bookInstanceService.bookInstanceCreateGet();
+      res.render('bookInstances/form', {
+        title: t('home.updateBook'),
+        action: ActionForm.Update,
+        books,
+        statuses: BookInstanceStatus,
+        bookInstance: req.body,
+        errors: errors.array(),
+      });
+    }
+
+    const updatedBookInstance = await bookInstanceService.bookInstanceUpdatePost(req.bookInstance, req.body);
+    res.redirect(`/bookInstance/${updatedBookInstance.id}`);
+  },
+)];
+
+export const bookInstanceDeleteGet = [checkValidId, checkExistsBookInstance, (req: IBookInstanceRequest, res: Response) => {
+  res.render('bookInstances/delete', { title: t('home.deleteBook'), bookInstance: req.bookInstance });
+}];
+
+export const bookInstanceDeletePost = [checkValidId, checkExistsBookInstance, asyncHandler(async (req: Request, res: Response) => {
+  await bookInstanceService.bookInstanceDeletePost(parseInt(req.params.id));
+  res.redirect('/bookInstance');
+})];

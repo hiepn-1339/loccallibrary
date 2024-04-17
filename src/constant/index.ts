@@ -3,3 +3,8 @@ export enum BookInstanceStatus {
   Loaned = 'Loaned',
   Maintenance = 'Maintenance'
 }
+
+export enum ActionForm {
+  Create = 'create',
+  Update = 'update'
+}

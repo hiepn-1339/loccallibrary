@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  h1 #{title}
+  form(method='POST' action=`${action}`)
+    div.form-group
+      label(for='book') #{t('home.book')}:
+      select.form-control(name='book' required)
+        each book in books
+          - let isSelected = bookInstance && book.book && book.book.name === book.name;
+          option(value=book.id selected=isSelected)= book.title
+      
+      label(for='imprint') Imprint:
+      input.form-control(type='text' placeholder='Imprint'
+        name='imprint' required value=( bookInstance === underfined ? '' : bookInstance.imprint))
+      
+      label(for='dueBack') Date when book available:
+      input.form-control(type='date'
+        name='dueBack' value=( bookInstance === underfined ? '' : bookInstance.dueBack))
+
+      label(for='status') status:
+      select.form-control(name='status' required)
+        each status in statuses
+          - let isSelected = bookInstance && bookInstance.status && bookInstance.status === status;
+          option(value=status selected=isSelected)= status
+
+    button.btn.btn-primary(type='submit') Submit
+    
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

@@ -15,3 +15,18 @@ export const genreDetail = async (id: number) => {
     where: { id: id },
   });
 };
+
+export const genreCreatePost = (data: any) => {
+  const genre = new Genre();
+  genre.name = data.name;
+  return genreRepository.create(genre);
+};
+
+export const genreUpdatePost = async (genre: Genre, data: any) => {
+  genre.name = data.name;
+  return await genreRepository.save(genre);
+};
+
+export const genreDeletePost = async (id: number) => {
+  await genreRepository.delete(id);
+};

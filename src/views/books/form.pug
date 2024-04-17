@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  h1 #{title}
+  form(method='POST' action=`${action}`)
+    div.form-group
+      label(for='title') #{t('home.title')}:
+      input.form-control(type='text' placeholder='Death wave'
+        name='title' required value=( book === underfined ? '' : book.title))
+      
+      label(for='author') #{t('home.author')}:
+      select.form-control(name='author' required)
+        each author in authors
+          - let isSelected = book && book.author && book.author.name === author.name;
+          option(value=author.id selected=isSelected)= author.name
+      
+      label(for='summary') #{t('home.summary')}:
+      input.form-control(type='text' placeholder='summary'
+        name='summary' required value=( book === underfined ? '' : book.summary))
+      
+      label(for='isbn') #{t('home.isbn')}:
+      input.form-control(type='text' placeholder='isbn'
+        name='isbn' required value=( book === underfined ? '' : book.isbn))
+      
+      label(for='genres') #{t('home.genre')}:
+      div
+        each genre in genres
+          div.genre
+            - let isChecked = book && book.genres && book.genres.find(g => g.id == genre.id );
+            input(type='checkbox' id=genre.id name='genres' value=genre.id checked=isChecked)
+            label(for=genre.id)= genre.name
+
+    button.btn.btn-primary(type='submit') #{t('home.submit')}
+    
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

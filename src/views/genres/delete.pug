@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  h1 #{title}: #{genre.name}
+  p #{t('home.doYouReallyWantToDeleteThisGenre')}
+  form(method='POST' action=`/genre/${genre.id}/delete`)
+    input(type='hidden' name='_method' value='DELETE')
+    button.btn.btn-primary(type='submit') #{t('home.delete')}

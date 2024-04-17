@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  h1 #{title}: #{bookInstance.imprint}
+  p #{t('home.doYouReallyWantToDeleteThisBookInstance')}
+  form(method='POST' action=`/bookInstance/${bookInstance.id}/delete`)
+    input(type='hidden' name='_method' value='DELETE')
+    button.btn.btn-primary(type='submit') #{t('home.delete')}

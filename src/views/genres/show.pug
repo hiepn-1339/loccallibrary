@@ -7,7 +7,13 @@ block content
     h4.mb-3 #{t('home.book')}
     each book in books 
      div 
-      a(href=book.url) #[strong #{book.title}]
+      a(href=`/book/${book.id}`) #[strong #{book.title}]
       p #{book.summary}
     else 
       p #{t('home.noBooks')}
+
+  hr
+  p
+    a(href=`/genre/${genre.id}/update`) #{t(home.updateGenre)}
+  p
+    a(href=`/genre/${genre.id}/delete`) #{t(home.deleteGenre)}

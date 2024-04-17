@@ -9,9 +9,9 @@ block content
   p #[strong #{t('home.isbn')}: ] #{book.isbn}
   p #[strong #{t('home.genre')}: ]
     each val, index in bookGenres
-      a(href=val.url) #{val.name}
+      a(href=`/genre/${val.id}`) #{val.name}
       if index < bookGenres.length - 1
-        |,
+        |, 
     else
       p #{t('home.noGenre')}
       div.mx-5
@@ -33,3 +33,9 @@ block content
       a(href=val.url) #{val.id}
   else
     p #{t('home.noCopies')}
+
+  hr
+  p
+    a(href=`/book/${book.id}/update`) #{t('home.updateBook')}
+  p
+    a(href=`/book/${book.id}/delete`) #{t('home.deleteBook')}
